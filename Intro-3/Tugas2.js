@@ -25,13 +25,18 @@ const seacrh = (keyword, angka, data) => {
   result.length = angka;
 
   result = result.filter((item) => item !== undefined);
-
-  console.log(`Data yang tersedia : ${result.length}`);
-
-  result.length ? console.log(result) : console.log("data tidak ada");
+  // callback di eksekusi didalam function
   data(result);
 };
-const seacrhName = (hasil) => {
-  return hasil;
+
+const ready = (text) => {
+  console.log(`data yang tersedia : ${text.length}`);
+  text.length ? console.log(text) : console.log("data tidak ada");
 };
-seacrh("ar", 7, seacrhName);
+
+// fungsi yang diteruskan ke fungsi lain
+seacrh("Al", 10, ready);
+
+// const seacrhName = (data, seacrh) => {
+//   seacrh(data);
+// };

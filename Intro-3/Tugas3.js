@@ -1,4 +1,4 @@
-const filterByLimits = (awal, akhir,arr) => {
+const filterByLimit = (awal, akhir, arr, data) => {
   let res = [];
 
   if (awal >= akhir) {
@@ -9,12 +9,16 @@ const filterByLimits = (awal, akhir,arr) => {
     res = arr.filter((element) => {
       return element >= awal && element <= akhir;
     });
-    res.sort();
+    res.sort((a, b) => {
+      return a - b;
+    });
   }
   // if (!res.length) {
   //   return "data tidak ada";
   // }
-  return !res.length ? "Nilai tidak ditemukan" : res;
-  // return res;
+  !res.length ? console.log("Nilai tidak ditemukan") : data(res);
 };
-console.log(filterByLimits( 5, 10,[18, 23, 22, 12,34,20]));
+filterByLimit(5, 40, [5, 40, 22, 12, 34, 20], (data) => {
+  console.log(data);
+});
+// console.log(filterByLimits( ));
