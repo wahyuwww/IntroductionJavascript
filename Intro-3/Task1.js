@@ -1,7 +1,7 @@
 const cekHariKerja = (day) => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            const dataDay = ['senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu', 'minggu']
+            const dataDay = ['senin', 'selasa', 'rabu', 'kamis', 'jumat']
             let cek = dataDay.find((item) => {
                 return item === day
             })
@@ -10,42 +10,42 @@ const cekHariKerja = (day) => {
             } else {
                 reject(new Error('Hari ini bukan hari kerja'))
             }
-        },300)
+        },3000)
     })
 }
 
 
-
-// promise
-// then catch tanpa menggunakan asyn await tidak menunggu terlebih dahulu di konstanta 
-// tetapi langsung di asynscronus sesuai diatas kemudian dijalankan
-cekHariKerja('rabu')
-    .then((item) => {
-        console.log("then")
-        console.log(item);
-    })
-    .catch((error) => {
-        console.log("catch")
-        console.log(error);
-    })
+// janji
+// lalu tangkap tanpa menggunakan asyn menunggu tanpa menunggu terlebih dahulu di konstanta
+// tetapi langsung di asyncscronus sesuai diatas kemudian dijalankan
+cekHariKerja("rabu")
+  .then((item) => {
+    // console.log("then")
+    console.log(`hari ini hari kerja ${item}`);
+  })
+  .catch((error) => {
+    // console.log("catch")
+    console.log(error);
+  });
 
 
 
     // mempermudah ketika ada asycronus
-    // tanpa promise asyn await, try catch juga bisa digunakan dicode lain untuk menangani error
-const kerja = async () => {
-    try {
-        const result = await cekHariKerja("kamis");
-        console.log("try");
-           console.log(result);
-    } catch (error) {
-         console.log("catch");
-        console.log(error);
-    }
+    // tanpa janji asyn menunggu, try catch juga bisa digunakan dikode lain untuk menangani error
+const kerja = async (day) => {
+  try {
+    const result = await cekHariKerja(day);
+    // console.log("try");
+    console.log(`hari ini adalah hari kerja ${result}`);
+  } catch (error) {
+    //  console.log("catch");
+    console.log(error);
+  }
+};
+kerja("senin");
+// menunggu sedang menunggu apabila settimeout sdh dijalankan maka menunggu juga dijalankan
+// mirip dengan penggunaan syncronus walau menunggu mnunggu dulu karena janji balikannya
+// jadi menunggu kode diatas dijalankan baru menunggu dijalankan
 
-}
-kerja()
 
-// await bersifat menunggu apabila settimeout sdh dijalankan maka await juga dijalankan
-// mirip dengan penggunaan syncronus walau await mnunggu dulu karena balikannya promise 
-// jadi menunggu code diatas dijalankan baru await dijalankan
+
